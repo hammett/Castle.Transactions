@@ -26,17 +26,17 @@ namespace Castle.Transactions.Activities
 
 		public CallContextActivityManager()
 		{
-			CallContext.SetData(Key, null);
+			CallContext.LogicalSetData(Key, null);
 		}
 
 		public Activity GetCurrentActivity()
 		{
-			var activity = (Activity) CallContext.GetData(Key);
+			var activity = (Activity) CallContext.LogicalGetData(Key);
 
 			if (activity == null)
 			{
 				activity = new Activity(NullLogger.Instance);
-				CallContext.SetData(Key, activity);
+				CallContext.LogicalSetData(Key, activity);
 			}
 
 			return activity;
